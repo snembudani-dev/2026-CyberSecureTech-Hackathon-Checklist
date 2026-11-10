@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hackathon Packing Checklist · CyberSecureTech 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7fb;--surface:#fff;--ink:#14183a;--muted:#555b7d;--line:#dfe2ef;--hero:#14183a;
+  --violet:#6d4aff;--teal:#0ea5a0;--coral:#ff6b57;--sun:#ffc233;--sky:#2f8cff;--mint:#22b573;--pink:#c9459b;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1030;--surface:#171b44;--ink:#f1f2ff;--muted:#a9aed4;--line:#2b3070;--hero:#080a22}}
+:root[data-theme="dark"]{--bg:#0d1030;--surface:#171b44;--ink:#f1f2ff;--muted:#a9aed4;--line:#2b3070;--hero:#080a22}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 "DM Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;margin:0;line-height:1.08}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
+/* hero */
+.hero{background:var(--hero);color:#fff;padding:44px 0 70px;position:relative;overflow:hidden}
+.hero .lines{position:absolute;inset:0;opacity:.18;background:repeating-conic-gradient(from 0deg at 85% 40%,#fff 0 1.2deg,transparent 1.2deg 7deg);-webkit-mask:radial-gradient(circle at 85% 40%,transparent 12%,#000 70%);mask:radial-gradient(circle at 85% 40%,transparent 12%,#000 70%)}
+.hero .wrap{position:relative}
+.tag{display:inline-block;background:#2c3166;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:700;letter-spacing:.02em}
+.hero h1{font-size:clamp(40px,9vw,68px);font-weight:800;margin:16px 0 10px}
+.hero h1 span{color:var(--sun);display:inline-block}
+.hero p{color:#d5d8f5;margin:0;max-width:44ch}
+.float{position:absolute;font-size:34px;will-change:transform;user-select:none}
+/* power bar */
+.power{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-top:-34px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hero);z-index:21}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:14px 18px;box-shadow:0 10px 30px rgba(20,24,58,.18)}
+.prow{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px;font-weight:700}
+.rank{font-family:"Bricolage Grotesque",sans-serif;font-size:19px}
+.pct{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;color:var(--violet)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .pct{color:#a794ff}}
+.track{height:18px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--violet),var(--coral),var(--sun))}
+.sub{color:var(--muted);font-size:14px;margin-top:6px}
+/* groups */
+.grid{display:grid;gap:16px;margin:28px 0 12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:26px;padding:18px;opacity:0}
+.ghead{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.gic{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;font-size:26px;color:#fff}
+.ghead h2{font-size:21px}
+.ghead small{display:block;color:var(--muted);font:500 13px "DM Sans",sans-serif}
+.item{display:flex;align-items:center;gap:12px;padding:10px 8px;border-radius:14px;cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent}
+.item:hover{background:color-mix(in srgb,var(--c) 10%,transparent)}
+.item input{position:absolute;opacity:0;pointer-events:none}
+.box{flex:none;width:28px;height:28px;border-radius:9px;border:2.5px solid var(--c);display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px;transition:background .15s}
+.item input:checked+.box{background:var(--c)}
+.item input:focus-visible+.box{outline:3px solid var(--sun);outline-offset:2px}
+.emo{font-size:22px;flex:none;width:28px;text-align:center}
+.lbl{flex:1;font-weight:500;transition:opacity .2s}
+.item input:checked~.lbl{text-decoration:line-through;opacity:.55}
+.must{font-size:11px;font-weight:800;background:var(--coral);color:#fff;border-radius:99px;padding:2px 8px}
+.fx{position:fixed;pointer-events:none;z-index:50;font-size:20px;will-change:transform,opacity}
+.foot{text-align:center;padding:30px 18px 50px}
+.foot p{color:var(--muted);max-width:50ch;margin:0 auto 16px}
+button{font:700 15px "DM Sans",sans-serif;border:0;border-radius:99px;padding:12px 22px;background:var(--violet);color:#fff;cursor:pointer}
+button.ghost{background:transparent;color:var(--muted);border:1.5px solid var(--line)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="lines"></div>
+  <span class="float" style="left:62%;top:22%">💻</span>
+  <span class="float" style="left:80%;top:52%">⚡</span>
+  <span class="float" style="left:70%;top:72%">🛡️</span>
+  <span class="float" style="left:90%;top:20%">🧠</span>
+  <div class="wrap">
+    <span class="tag">HACKATHON 101 · CYBERSECURETECH 2026</span>
+    <h1>Pack like a <span id="pop">legend.</span></h1>
+    <p>Tap each item as you pack it. Fill the power bar to 100% and you’re ready to hack.</p>
+  </div>
+</header>
+
+<div class="power"><div class="wrap"><div class="pcard" role="status" aria-live="polite">
+  <div class="prow"><span class="rank" id="rank">Rookie</span><span class="pct"><span id="pct">0</span>%</span></div>
+  <div class="track"><div class="bar" id="bar"></div></div>
+  <div class="sub" id="count">0 of 0 packed</div>
+</div></div></div>
+
+<main class="wrap"><div class="grid" id="grid"></div>
+  <div class="foot">
+    <p>Not sure about meals, Wi-Fi or staying overnight? Ask the organisers. Most important of all: bring curiosity, an open mind and team spirit.</p>
+    <button class="ghost" id="reset">Start over</button>
+  </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+var GROUPS=[
+ {t:"Must-haves",s:"Don’t leave home without these",c:"--coral",i:"🚨",items:[["🪪","Student or ID card",1],["💊","Personal medication",1],["💧","Reusable water bottle",1],["📱","Phone and charger",1],["🔋","Power bank",0]]},
+ {t:"Tech kit",s:"Your hacking gear",c:"--violet",i:"💻",items:[["💻","Laptop and charger",1],["🔌","Multiplug or extension cord",0],["🎧","Headphones to focus",0],["🖱️","Mouse",0],["💾","USB drive or external hard drive",0]]},
+ {t:"Comfort crew",s:"Survive the long hours in style",c:"--sky",i:"🛌",items:[["🧣","Blanket, in case it gets cold",1],["🧥","Jersey or jacket",0],["👟","Comfortable clothes and shoes",0],["👕","Change of clothes",0],["🍎","Snacks to keep your energy up",0]]},
+ {t:"Freshen up",s:"Toiletries, so you stay human",c:"--teal",i:"🧴",items:[["🪥","Toothbrush and toothpaste",1],["🧼","Soap or body wash",0],["🧴","Deodorant",0],["🧻","Towel or face cloth",0],["🧖","Lip balm, lotion or hair brush",0]]},
+ {t:"Work kit",s:"For brainstorming and planning",c:"--mint",i:"✏️",items:[["📓","Notebook and pens",0],["🖍️","Markers or sticky notes",0],["📄","Saved or printed copy of the guide",0]]},
+];
+var RM=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+var KEY="hackathon-pack-v1",state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+var grid=document.getElementById("grid"),total=0;
+GROUPS.forEach(function(g,gi){
+  var d=document.createElement("section");d.className="group";d.style.setProperty("--c","var("+g.c+")");
+  var h='<div class="ghead"><div class="gic" style="background:var('+g.c+')">'+g.i+'</div><div><h2>'+g.t+'</h2><small>'+g.s+'</small></div></div>';
+  g.items.forEach(function(it,ii){var id=gi+"-"+ii;total++;
+    h+='<label class="item"><input type="checkbox" data-id="'+id+'"'+(state[id]?" checked":"")+'><span class="box">'+(state[id]?"✓":"")+'</span><span class="emo">'+it[0]+'</span><span class="lbl">'+it[1]+'</span>'+(it[2]?'<span class="must">MUST</span>':'')+'</label>';});
+  d.innerHTML=h;grid.appendChild(d);
+});
+var bar=document.getElementById("bar"),pctEl=document.getElementById("pct"),shown={v:0},last=-1;
+function ranks(p){return p>=100?"READY TO HACK! 🚀":p>=70?"Legend in the making":p>=35?"Hacker":"Rookie"}
+function update(first){
+  var n=document.querySelectorAll("input:checked").length,p=Math.round(n/total*100);
+  document.getElementById("count").textContent=n+" of "+total+" packed";
+  document.getElementById("rank").textContent=ranks(p);
+  if(RM||first){bar.style.width=p+"%";pctEl.textContent=p;shown.v=p;return}
+  anime({targets:bar,width:p+"%",duration:700,easing:"easeOutElastic(1, .8)"});
+  anime({targets:shown,v:p,round:1,duration:600,easing:"easeOutQuad",update:function(){pctEl.textContent=shown.v}});
+  if(p===100&&last!==100)confetti();
+  last=p;
+}
+function burst(x,y,col){
+  if(RM)return;
+  for(var i=0;i<9;i++){var s=document.createElement("span");s.className="fx";s.textContent=["✦","✧","⚡","★"][i%4];s.style.left=x+"px";s.style.top=y+"px";s.style.color=col;document.body.appendChild(s);
+    var a=Math.PI*2*i/9,r=34+Math.random()*30;
+    anime({targets:s,translateX:Math.cos(a)*r,translateY:Math.sin(a)*r,scale:[1.2,0],opacity:[1,0],rotate:Math.random()*180,duration:650,easing:"easeOutCubic",complete:function(an){an.animatables[0].target.remove()}});}
+}
+function confetti(){
+  if(RM)return;var cols=["#ffc233","#ff6b57","#6d4aff","#0ea5a0","#2f8cff","#22b573"];
+  for(var i=0;i<60;i++){var s=document.createElement("span");s.className="fx";s.textContent=["🎉","✦","★","◆"][i%4];s.style.color=cols[i%6];s.style.left=(Math.random()*100)+"vw";s.style.top="-30px";document.body.appendChild(s);
+    anime({targets:s,translateY:window.innerHeight+80,translateX:(Math.random()-.5)*200,rotate:Math.random()*720,opacity:[1,.9,0],duration:1800+Math.random()*1400,delay:Math.random()*500,easing:"easeInQuad",complete:function(an){an.animatables[0].target.remove()}});}
+}
+grid.addEventListener("change",function(e){
+  var inp=e.target;if(!inp.dataset.id)return;
+  var box=inp.nextElementSibling;state[inp.dataset.id]=inp.checked?1:0;save();
+  box.textContent=inp.checked?"✓":"";
+  if(inp.checked&&!RM){var r=box.getBoundingClientRect(),col=getComputedStyle(inp.closest(".group")).getPropertyValue("--c");
+    anime({targets:box,scale:[.4,1.25,1],rotate:[-15,0],duration:450,easing:"easeOutBack"});
+    burst(r.left+r.width/2,r.top+r.height/2,getComputedStyle(box).borderColor);}
+  update(false);
+});
+document.getElementById("reset").onclick=function(){
+  state={};save();document.querySelectorAll("input").forEach(function(i){i.checked=false;i.nextElementSibling.textContent=""});last=-1;update(false)};
+update(true);last=Math.round(document.querySelectorAll("input:checked").length/total*100);
+if(RM){document.querySelectorAll(".group").forEach(function(g){g.style.opacity=1})}
+else{
+  anime({targets:".group",translateY:[40,0],opacity:[0,1],delay:anime.stagger(110,{start:200}),duration:700,easing:"easeOutExpo"});
+  anime({targets:".hero h1 span#pop",scale:[1,1.08],rotate:[-2,2],direction:"alternate",loop:true,duration:900,easing:"easeInOutSine"});
+  document.querySelectorAll(".float").forEach(function(f,i){anime({targets:f,translateY:[-12,12],rotate:[-8,8],direction:"alternate",loop:true,duration:1800+i*350,easing:"easeInOutSine"})});
+  anime({targets:".hero .lines",rotate:360,duration:90000,easing:"linear",loop:true});
+}
+</script>
+</body>
+</html>
